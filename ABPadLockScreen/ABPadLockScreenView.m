@@ -107,13 +107,15 @@
         _buttonNine = [[ABPadButton alloc] initWithFrame:CGRectZero number:9 letters:@"WXYZ"];
         
         _buttonZero = [[ABPadButton alloc] initWithFrame:CGRectZero number:0 letters:nil];
-        
+
 		UIButtonType buttonType = UIButtonTypeSystem;
 		if(NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_6_1)
 		{
 			buttonType = UIButtonTypeCustom;
 		}
 		
+        _touchIdButton = [UIButton buttonWithType:buttonType];
+
 		_cancelButton = [UIButton buttonWithType:buttonType];
         [_cancelButton setTitle:NSLocalizedString(@"Cancel", @"") forState:UIControlStateNormal];
 		_cancelButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
@@ -466,8 +468,9 @@
     [self setUpButton:self.buttonEight left:centerButtonLeft top:bottomRowTop];
     [self setUpButton:self.buttonNine left:rightButtonLeft top:bottomRowTop];
     
+    [self setUpButton:self.touchIdButton left:lefButtonLeft top:zeroRowTop];
     [self setUpButton:self.buttonZero left:centerButtonLeft top:zeroRowTop];
-    
+
 	CGRect deleteCancelButtonFrame = CGRectMake(rightButtonLeft, zeroRowTop + ABPadButtonHeight + 25, ABPadButtonWidth, 20);
 	if(!IS_IPHONE5)
 	{
